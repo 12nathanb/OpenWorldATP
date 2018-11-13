@@ -1,0 +1,159 @@
+fileFormatVersion: 2
+guid: 0ab47183620754a39923dd8b2e7ef617
+timeCreated: 1508986060
+licenseType: Store
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Car_01
+    100002: Car_02
+    100004: Car_03
+    100006: Car_04
+    100008: Car_05
+    100010: Car_06
+    100012: Tractor
+    100014: Tractor_part
+    100016: Truck_01
+    100018: Truck_01_part
+    100020: Truck_02
+    100022: Truck_02_part
+    100024: Truck_03
+    100026: Truck_03_part
+    100028: //RootNode
+    100030: Wheel_01
+    100032: Wheel_02
+    400000: Car_01
+    400002: Car_02
+    400004: Car_03
+    400006: Car_04
+    400008: Car_05
+    400010: Car_06
+    400012: Tractor
+    400014: Tractor_part
+    400016: Truck_01
+    400018: Truck_01_part
+    400020: Truck_02
+    400022: Truck_02_part
+    400024: Truck_03
+    400026: Truck_03_part
+    400028: //RootNode
+    400030: Wheel_01
+    400032: Wheel_02
+    2300000: Car_01
+    2300002: Car_02
+    2300004: Car_03
+    2300006: Car_04
+    2300008: Car_05
+    2300010: Car_06
+    2300012: Tractor
+    2300014: Tractor_part
+    2300016: Truck_01
+    2300018: Truck_01_part
+    2300020: Truck_02
+    2300022: Truck_02_part
+    2300024: Truck_03
+    2300026: Truck_03_part
+    2300028: Wheel_01
+    2300030: Wheel_02
+    3300000: Car_01
+    3300002: Car_02
+    3300004: Car_03
+    3300006: Car_04
+    3300008: Car_05
+    3300010: Car_06
+    3300012: Tractor
+    3300014: Tractor_part
+    3300016: Truck_01
+    3300018: Truck_01_part
+    3300020: Truck_02
+    3300022: Truck_02_part
+    3300024: Truck_03
+    3300026: Truck_03_part
+    3300028: Wheel_01
+    3300030: Wheel_02
+    4300000: Car_02
+    4300002: Tractor
+    4300004: Wheel_02
+    4300006: Tractor_part
+    4300008: Wheel_01
+    4300010: Car_05
+    4300012: Car_03
+    4300014: Car_04
+    4300016: Truck_01
+    4300018: Truck_01_part
+    4300020: Truck_02_part
+    4300022: Truck_02
+    4300024: Truck_03
+    4300026: Truck_03_part
+    4300028: Car_06
+    4300030: Car_01
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
