@@ -6,6 +6,8 @@ public class MapPointGen : MonoBehaviour {
 
     public int MapWidth;
     public int MapHeight;
+    public int ChunkWidth;
+    public int ChunkHeight;
     public Transform plane;
 
     public List<Transform> pointList;
@@ -18,9 +20,14 @@ public class MapPointGen : MonoBehaviour {
         {
             for(int y = 0; y < MapHeight; y++)
             {
-                pointList.Add (Instantiate(plane, new Vector3(x * 10, 0 , y * 10), Quaternion.identity));
-                pointList[x * y].name = "Point" + (x * y);
+                pointList.Add (Instantiate(plane, new Vector3(x * ChunkWidth, 0 , y * ChunkHeight), Quaternion.identity));
+                
             }
+        }
+
+        for(int i = 0; i < pointList.Count; i++)
+        {
+            pointList[i].name = "Point" + i;
         }
 	}
 	
