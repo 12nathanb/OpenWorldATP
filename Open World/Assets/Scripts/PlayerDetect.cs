@@ -121,7 +121,7 @@ public class PlayerDetect : MonoBehaviour {
         chunk = Instantiate(plane, point.position, Quaternion.identity);
         chunk.name = this.gameObject.name + " Chunk";
         name = chunk.name;
-        chunk.GetComponent<Renderer>().material.color = Random.ColorHSV(0f, 1f, 1f, 1f, 0.5f, 1f);
+        //chunk.GetComponent<Renderer>().material.color = Random.ColorHSV(0f, 1f, 1f, 1f, 0.5f, 1f);
         chunk.transform.parent = this.transform;
         isActive = true;
 
