@@ -9,20 +9,20 @@ public class MapPointGen : MonoBehaviour {
     public int ChunkWidth;
     public int ChunkHeight;
     public Transform plane;
-
+    public Transform GM;
     public List<Transform> pointList;
     public NavMeshSurface surface;
     // Use this for initialization
     void Start ()
     {
+        GM = GameObject.FindGameObjectWithTag("GameController").transform;
 
-
-		for(int x = 0; x < MapWidth; x++)
+        for (int x = 0; x < MapWidth; x++)
         {
             for(int y = 0; y < MapHeight; y++)
             {
               
-                pointList.Add (Instantiate(plane, new Vector3(x * ChunkWidth, 0 , y * ChunkHeight), Quaternion.identity));
+               pointList.Add (Instantiate(plane, new Vector3(x * ChunkWidth, 0 , y * ChunkHeight), Quaternion.identity));
 
             }
         }
@@ -30,7 +30,7 @@ public class MapPointGen : MonoBehaviour {
         for(int i = 0; i < pointList.Count; i++)
         {
             pointList[i].name = "Point" + i;
-            pointList[i].SetParent(this.transform);
+            pointList[i].SetParent(GM.transform);
         }
     }
 	

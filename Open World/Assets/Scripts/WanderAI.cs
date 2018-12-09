@@ -43,4 +43,9 @@ public class WanderAI : MonoBehaviour {
             timer = 0;
         }
     }
+
+    void OnTriggerEnter(Collider col)
+    {
+        this.transform.SetParent(col.transform);
+    }
 }
