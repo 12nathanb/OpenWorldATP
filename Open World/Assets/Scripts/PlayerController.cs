@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour {
         var z = Input.GetAxis("Vertical") * Time.deltaTime * 2.0f;
         if(Input.GetKeyDown(KeyCode.Q))
         {
-            SaveSystem.SavePlayer(this);
+//            SaveSystem.SavePlayer(this);
         }
         anim.SetFloat("Horizontal", (x * 10));
         anim.SetFloat("Vertical", (z * 10));

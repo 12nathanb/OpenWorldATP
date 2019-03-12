@@ -21,9 +21,6 @@ public class ChunkNodes : MonoBehaviour {
             {
                 count++;
                 points.Add(Instantiate(new GameObject(), this.transform.position - new Vector3(x  - 4.5f, 0.5f, y  - 4.5f), Quaternion.identity));
-                //points[count].name = "world point " + count;
-                //points[count].transform.SetParent(this.transform);
-
             }
         }
 
