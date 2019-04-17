@@ -5,8 +5,8 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour {
 
     public Animator anim;
-
-
+    public GameObject spawner;
+    public GameObject cubePrefab;
     void Start()
     {
         LoadPlayer();
@@ -25,6 +25,11 @@ public class PlayerController : MonoBehaviour {
         transform.Rotate(0, x, 0);
         transform.Translate(0, 0, z);
 
+        if(Input.GetButtonDown("Jump"))
+        {
+            GameObject cube = Instantiate(cubePrefab, spawner.transform.position, Quaternion.identity);
+            Debug.Log("place");
+        }
         if (x <= 0.1 || z <= 0.1)
         {
             
@@ -41,4 +46,12 @@ public class PlayerController : MonoBehaviour {
         pos.z = data.position[2];
         transform.position = pos;
     }
+
+    public void SavePlayer ()
+    {
+        Debug.Log("prepare to save");
+        SaveSystem.SavePlayer(this);
+    }
+
+
 }

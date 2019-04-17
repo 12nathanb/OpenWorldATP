@@ -526,7 +526,6 @@ GameObject:
   m_Component:
   - component: {fileID: 295229464}
   - component: {fileID: 295229465}
-  - component: {fileID: 295229466}
   - component: {fileID: 295229468}
   - component: {fileID: 295229467}
   - component: {fileID: 295229469}
@@ -569,18 +568,6 @@ MonoBehaviour:
   GM: {fileID: 0}
   pointList: []
   surface: {fileID: 295229467}
---- !u!114 &295229466
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 295229463}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 342d74adeef2f7b4686c94b4bf445cf3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  chunks: []
 --- !u!114 &295229467
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1404,6 +1391,34 @@ Transform:
   m_Father: {fileID: 1080127411}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1277019026
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1277019027}
+  m_Layer: 0
+  m_Name: Spawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1277019027
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1277019026}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.3, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1428402015}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1277077268
 GameObject:
   m_ObjectHideFlags: 0
@@ -1577,6 +1592,7 @@ Transform:
   - {fileID: 1173036440}
   - {fileID: 1768638340}
   - {fileID: 534669905}
+  - {fileID: 1277019027}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1592,6 +1608,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 1428402014}
+  spawner: {fileID: 1277019026}
+  cubePrefab: {fileID: 1688475959349528, guid: afed75db91d4f204992084b228b72855, type: 2}
 --- !u!54 &1428402017
 Rigidbody:
   m_ObjectHideFlags: 0

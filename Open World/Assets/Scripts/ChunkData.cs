@@ -29,7 +29,9 @@ public class ChunkData{
            z[i] = obj[i].transform.position.z;
            y[i] = obj[i].transform.position.y;
            objname[i] = obj[i].gameObject.name;
-           location[i] = AssetDatabase.GetAssetPath(obj[i]);
+           
+           location[i] = obj[i].gameObject.tag;
+        
        }
 
        Name = name;

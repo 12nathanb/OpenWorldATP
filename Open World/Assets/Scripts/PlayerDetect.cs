@@ -21,20 +21,13 @@ public class PlayerDetect : MonoBehaviour {
     private bool isActive = false;
     public List <int> testArray;
     public List<GameObject> LoadedInObjects;
-    public List<string> ObjectLocation;
     public char[] test;
-    public GameObject gm;
-
     ChunkData data;
-   public string filetemp;
-    [XmlAttribute("name")]
-    public string name;
+
     // Use this for initialization
     void Start ()
     {
         data = SaveSystem.LoadChunk(this.gameObject.name.ToString());
-        Debug.Log(filetemp);
-        gm = GameObject.FindGameObjectWithTag("GameController");
         point = this.transform;
         player = GameObject.FindGameObjectWithTag("Player").transform;
     }
@@ -47,8 +40,6 @@ public class PlayerDetect : MonoBehaviour {
        // 
 		if (dis <= range && isActive == false)
         {
-          
-            filetemp = "Assets/Level/" + this.gameObject.name + ".txt";
             populateLevel();
             
              isActive = true;
@@ -80,32 +71,41 @@ public class PlayerDetect : MonoBehaviour {
     public void StoreGameObject(GameObject store)
     {
         LoadedInObjects.Add(store);
-        ObjectLocation.Add(AssetDatabase.GetAssetPath(store));
-
     }
     
     void LoadLevel()
     {
+       
         for(int i = 0; i < data.objname.Length; i++)
-            {
-               
-                  LoadedInObjects.Add((GameObject)AssetDatabase.LoadAssetAtPath(data.location[i].ToString(), typeof(GameObject)));
+        {
             
+
+            if(data.location[i] == "Block")
+            {
+                GameObject temp = Instantiate(cube, new Vector3(data.x[i],data.y[i],data.z[i]), Quaternion.identity);
+                temp.gameObject.tag = "Block";
+                temp.gameObject.transform.SetParent(chunk.gameObject.transform);
+                LoadedInObjects.Add(temp);
+
             }
+            
+
+       }
+        
+        
     }
 
+
+    public void addChunk(GameObject c)
+    {
+        chunk = c;
+    }
     void populateLevel()
     {
-
         if(isActive == false)
         {
-
             chunk = Instantiate(plane, point.position, Quaternion.identity);
             chunk.GetComponent<Chunk>().setChunkPoint(this.gameObject);
-
-
-        }
-        
-        
+        }     
     }
 }
