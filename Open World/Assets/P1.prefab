@@ -154,6 +154,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   point: {fileID: 0}
+  gameobjectList: []
+  cube: {fileID: 1688475959349528, guid: afed75db91d4f204992084b228b72855, type: 2}
 --- !u!114 &114751162519002528
 MonoBehaviour:
   m_ObjectHideFlags: 1

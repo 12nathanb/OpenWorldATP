@@ -27,7 +27,7 @@ public class PlayerDetect : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
-        data = SaveSystem.LoadChunk(this.gameObject.name.ToString());
+        //data = SaveSystem.LoadChunk(this.gameObject.name.ToString());
         point = this.transform;
         player = GameObject.FindGameObjectWithTag("Player").transform;
     }
@@ -56,10 +56,10 @@ public class PlayerDetect : MonoBehaviour {
             isActive = false;
         }
 
-        if(LoadedInObjects.Count >= 1)
-        {
-            SaveSystem.SaveChunk(LoadedInObjects, this.gameObject.name.ToString());
-        }
+        // if(LoadedInObjects.Count >= 1)
+        // {
+        //     SaveSystem.SaveChunk(LoadedInObjects, this.gameObject.name.ToString());
+        // }
     }
 
     private float Distance()
@@ -70,27 +70,27 @@ public class PlayerDetect : MonoBehaviour {
   
     public void StoreGameObject(GameObject store)
     {
-        LoadedInObjects.Add(store);
+       // LoadedInObjects.Add(store);
     }
     
     void LoadLevel()
     {
        
-        for(int i = 0; i < data.objname.Length; i++)
-        {
+    //     for(int i = 0; i < data.objname.Length; i++)
+    //     {
             
 
-            if(data.location[i] == "Block")
-            {
-                GameObject temp = Instantiate(cube, new Vector3(data.x[i],data.y[i],data.z[i]), Quaternion.identity);
-                temp.gameObject.tag = "Block";
-                temp.gameObject.transform.SetParent(chunk.gameObject.transform);
-                LoadedInObjects.Add(temp);
+    //         if(data.location[i] == "Block")
+    //         {
+    //             GameObject temp = Instantiate(cube, new Vector3(data.x[i],data.y[i],data.z[i]), Quaternion.identity);
+    //             temp.gameObject.tag = "Block";
+    //             temp.gameObject.transform.SetParent(chunk.gameObject.transform);
+    //             LoadedInObjects.Add(temp);
 
-            }
+    //         }
             
 
-       }
+    //    }
         
         
     }
