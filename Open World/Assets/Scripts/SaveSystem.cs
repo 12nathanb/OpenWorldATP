@@ -76,8 +76,15 @@ public static class SaveSystem  {
 
     public static void SaveChunk(List<GameObject> obj, string name)
     {
-        BinaryFormatter formatter = new BinaryFormatter();
         string path = Application.persistentDataPath + "/Saved" + name + ".AT";
+
+        if(File.Exists(path))
+        {
+            File.Delete(path);
+        }
+        
+        BinaryFormatter formatter = new BinaryFormatter();
+        
         FileStream stream = new FileStream(path, FileMode.Create);
 
         ChunkData data = new ChunkData(obj, name);

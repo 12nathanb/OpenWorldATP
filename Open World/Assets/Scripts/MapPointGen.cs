@@ -12,10 +12,15 @@ public class MapPointGen : MonoBehaviour {
     public Transform GM;
     public List<Transform> pointList;
     public NavMeshSurface surface;
+    public GameObject[] ememyList;
+    public float enemyCount = 0;
+
+    public GameObject Player;
     // Use this for initialization
     void Start ()
     {
         GM = GameObject.FindGameObjectWithTag("GameController").transform;
+        Player = GameObject.FindGameObjectWithTag("Player");
 
         for (int x = 0; x < MapWidth; x++)
         {
@@ -37,6 +42,12 @@ public class MapPointGen : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        
+        ememyList = GameObject.FindGameObjectsWithTag("Enemy");
+        enemyCount = ememyList.Length;
 	}
+
+    void OnDestroy()
+    {
+        Player.GetComponent<PlayerController>().SavePlayer();
+    }
 }

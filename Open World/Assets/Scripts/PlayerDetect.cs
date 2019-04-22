@@ -23,6 +23,8 @@ public class PlayerDetect : MonoBehaviour {
     public List<GameObject> LoadedInObjects;
     public char[] test;
     ChunkData data;
+    
+    
 
     // Use this for initialization
     void Start ()
@@ -106,6 +108,7 @@ public class PlayerDetect : MonoBehaviour {
         {
             chunk = Instantiate(plane, point.position, Quaternion.identity);
             chunk.GetComponent<Chunk>().setChunkPoint(this.gameObject);
+            chunk.gameObject.transform.SetParent(this.gameObject.transform);
         }     
     }
 }

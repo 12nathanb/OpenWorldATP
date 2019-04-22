@@ -7,6 +7,8 @@ public class Builder : MonoBehaviour {
 	public Dropdown drop;
 	public GameObject cubePrefab;
 	public GameObject spherePrefab;
+
+	bool canPlace = true;
 	
 	// Use this for initialization
 	void Start () {
@@ -17,7 +19,7 @@ public class Builder : MonoBehaviour {
 	void Update () 
 	{
 		
-        if(Input.GetButtonDown("Fire1"))
+        if(Input.GetButtonDown("Fire1") && canPlace == true)
         {
 			GameObject cube = null;
 			switch(drop.value)
@@ -39,8 +41,25 @@ public class Builder : MonoBehaviour {
         }	
 	}
 
+	void OnTriggerEnter(Collider other)
+	{
+		if(other.gameObject.tag == "Block" || other.gameObject.tag == "Sphere")
+		{
+				canPlace = false;
+		}
+		
+	}
+
+	void OnTriggerExit(Collider other)
+	{
+		if(other.gameObject.tag == "Block" || other.gameObject.tag == "Sphere")
+		{
+				canPlace = true;
+		}
+		
+	}
 	void  OnTriggerStay(Collider  other)
-    {
+  {
 		if(Input.GetButtonDown("Fire2"))
         {
 			if(other.gameObject.tag == "Block" || other.gameObject.tag == "Sphere" )
@@ -48,5 +67,7 @@ public class Builder : MonoBehaviour {
 				Destroy(other.gameObject);
 			}
 		}
-    }
+
+		
+  }
 }
