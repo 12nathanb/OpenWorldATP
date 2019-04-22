@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System.IO;
 public class Chunk : MonoBehaviour {
 
 	public GameObject point;
@@ -10,26 +10,33 @@ public class Chunk : MonoBehaviour {
 	public List<GameObject> gameobjectList;
 
 	public GameObject cube;
+	public GameObject sphere;
 
 	// Use this for initialization
 	void Start () 
 	{
+		string path = Application.persistentDataPath + "/Saved" + point.gameObject.name + ".AT";
 
-		data = SaveSystem.LoadChunk(point.gameObject.name.ToString());
-		 
-        for(int i = 0; i < data.objname.Length; i++)
-        {
-            
-
-            if(data.location[i] == "Block")
-            {
-                GameObject temp = Instantiate(cube, new Vector3(data.x[i],data.y[i],data.z[i]), Quaternion.identity);
-                temp.gameObject.tag = "Block";
-                temp.gameObject.transform.SetParent(this.gameObject.transform);
-            }
-            
-
-       }
+		if(File.Exists(path))
+		{
+			data = SaveSystem.LoadChunk(point.gameObject.name.ToString());
+			
+			for(int i = 0; i < data.objname.Length; i++)
+			{
+				if(data.location[i] == "Block")
+				{
+					GameObject temp = Instantiate(cube, new Vector3(data.x[i],data.y[i],data.z[i]), Quaternion.identity);
+					temp.gameObject.tag = "Block";
+					temp.gameObject.transform.SetParent(this.gameObject.transform);
+				}
+				else if(data.location[i] == "Sphere")
+				{
+					GameObject temp = Instantiate(sphere, new Vector3(data.x[i],data.y[i],data.z[i]), Quaternion.identity);
+					temp.gameObject.tag = "Sphere";
+					temp.gameObject.transform.SetParent(this.gameObject.transform);
+				}
+			}
+		}
 	}
 	
 	// Update is called once per frame
@@ -53,7 +60,7 @@ public class Chunk : MonoBehaviour {
         {
 			foreach (Transform child in transform)
 			{
-				if(child.tag == "Block")
+				if(child.tag == "Block" || child.tag == "Sphere")
 				{
 					gameobjectList.Add(child.gameObject);
 				}
@@ -73,7 +80,7 @@ public class Chunk : MonoBehaviour {
            other.gameObject.GetComponent<PlayerController>().SavePlayer();
 		}
 
-		if(other.gameObject.tag == "Block")
+		if(other.gameObject.tag == "Block" || other.gameObject.tag == "Sphere")
         {
 			Debug.Log("AHHH BLOCK");
            point.GetComponent<PlayerDetect>().StoreGameObject(other.gameObject);

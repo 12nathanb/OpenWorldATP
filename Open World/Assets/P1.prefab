@@ -156,6 +156,7 @@ MonoBehaviour:
   point: {fileID: 0}
   gameobjectList: []
   cube: {fileID: 1688475959349528, guid: afed75db91d4f204992084b228b72855, type: 2}
+  sphere: {fileID: 1122903950334120, guid: f8ef630c2c089664ba7abcb2c11a89d8, type: 2}
 --- !u!114 &114751162519002528
 MonoBehaviour:
   m_ObjectHideFlags: 1

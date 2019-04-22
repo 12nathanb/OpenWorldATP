@@ -25,11 +25,7 @@ public class PlayerController : MonoBehaviour {
         transform.Rotate(0, x, 0);
         transform.Translate(0, 0, z);
 
-        if(Input.GetButtonDown("Jump"))
-        {
-            GameObject cube = Instantiate(cubePrefab, spawner.transform.position, Quaternion.identity);
-            Debug.Log("place");
-        }
+        
         if (x <= 0.1 || z <= 0.1)
         {
             

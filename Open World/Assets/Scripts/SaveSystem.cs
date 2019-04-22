@@ -36,7 +36,7 @@ public static class SaveSystem  {
         }
         else
         {
-            Debug.LogError("No file");
+            Debug.Log("No file");
             return null;
         }
     }
@@ -50,15 +50,26 @@ public static class SaveSystem  {
             BinaryFormatter formatter = new BinaryFormatter();
             FileStream stream = new FileStream(path, FileMode.Open);
 
-            ChunkData data = formatter.Deserialize(stream) as ChunkData;
+            if(stream != null)
+            {
+                ChunkData data = formatter.Deserialize(stream) as ChunkData;
+                stream.Close();
+                return data;
+            }
+            else
+            {
+                stream.Close();
+                return null;
+            }
+            
 
-            stream.Close();
+            
             Debug.Log("WOOOO");
-            return data;
+            
         }
         else
         {
-            Debug.LogError("No file");
+            Debug.Log("No file");
             return null;
         }
     }
