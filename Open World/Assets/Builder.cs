@@ -18,7 +18,21 @@ public class Builder : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
-		
+				if(Input.GetKeyDown(KeyCode.F1))
+				{
+					drop.value = 0;
+				}
+
+				if(Input.GetKeyDown(KeyCode.F2))
+				{
+					drop.value = 1;
+				}
+
+				if(Input.GetKeyDown(KeyCode.F3))
+				{
+					drop.value = 2;
+				}
+
         if(Input.GetButtonDown("Fire1") && canPlace == true)
         {
 			GameObject cube = null;
@@ -46,15 +60,7 @@ public class Builder : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other)
 	{
-		if(drop.value == 2)
-		{
-			if(other.gameObject.tag == "Enemy")
-			{
-					float rand = Random.Range(1f, 3f);
-					other.gameObject.GetComponent<WanderAI>().Health -= rand;
-			}
-		}
-
+		
 		if(other.gameObject.tag == "Block" || other.gameObject.tag == "Sphere")
 		{
 				canPlace = false;
@@ -72,6 +78,14 @@ public class Builder : MonoBehaviour {
 	}
 	void  OnTriggerStay(Collider  other)
   {
+		if(drop.value == 2)
+		{
+			if(other.gameObject.tag == "Enemy")
+			{
+					other.gameObject.GetComponent<WanderAI>().Health -= 1;
+			}
+		}
+
 		if(Input.GetButtonDown("Fire2"))
         {
 			if(other.gameObject.tag == "Block" || other.gameObject.tag == "Sphere" )

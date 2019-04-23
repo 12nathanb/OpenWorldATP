@@ -17,6 +17,8 @@ public class Chunk : MonoBehaviour {
 
 	bool canSpawn = true;
 
+	bool thereIsEnemy = false;
+
 	// Use this for initialization
 	void Start () 
 	{
@@ -46,6 +48,7 @@ public class Chunk : MonoBehaviour {
 				}
 				else if(data.location[i] == "Enemy")
 				{
+					thereIsEnemy = true;
 					GameObject temp = Instantiate(enemy, new Vector3(data.x[i],data.y[i],data.z[i]), Quaternion.identity);
 					temp.gameObject.tag = "Enemy";
 					temp.gameObject.transform.SetParent(this.gameObject.transform);
@@ -53,7 +56,7 @@ public class Chunk : MonoBehaviour {
 			}
 		}
 		float num = Random.Range(0f, 100f);
-		if(num >= 80 && canSpawn == true)
+		if(num >= 80 && canSpawn == true && thereIsEnemy == false)
 		{
 			Vector3 position = new Vector3(point.transform.position.x, 3, point.transform.position.z);
 			Instantiate(enemy, position, Quaternion.identity);
@@ -70,6 +73,7 @@ public class Chunk : MonoBehaviour {
 
 	void enemyCanSpawn()
 	{
+		Debug.Log(GM.GetComponent<MapPointGen>().enemyCount);
 		if(GM.GetComponent<MapPointGen>().enemyCount >= 20)
 		{
 			canSpawn = false;

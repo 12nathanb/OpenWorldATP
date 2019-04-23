@@ -16,6 +16,8 @@ public class WanderAI : MonoBehaviour {
     int MoveSpeed = 5;
     public GameObject player;
 
+    bool chase = false;
+
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -46,7 +48,7 @@ public class WanderAI : MonoBehaviour {
         }
         timer += Time.deltaTime;
 
-        if (timer >= wanderTimer)
+        if (timer >= wanderTimer && chase == false)
         {
             Vector3 newPos = RandomNavSphere(transform.position, wanderRadius, -1);
             agent.SetDestination(newPos);
@@ -55,7 +57,12 @@ public class WanderAI : MonoBehaviour {
 
         if(Vector3.Distance(transform.position, player.transform.position) >= minDist)
         {
+            chase = true;
              transform.position += transform.forward * MoveSpeed * Time.deltaTime;
+        }
+        else
+        {
+            chase = false;
         }
     }
 
