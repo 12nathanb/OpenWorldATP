@@ -34,15 +34,27 @@ public class Builder : MonoBehaviour {
 				break;
 			}
 			
-            
-			cube.transform.position = new Vector3(Mathf.Round(cube.transform.position.x), cube.transform.position.y,
+        if(drop.value != 2)
+				{
+					cube.transform.position = new Vector3(Mathf.Round(cube.transform.position.x), cube.transform.position.y,
 											  Mathf.Round(cube.transform.position.z));
             Debug.Log("place");
+				}   
+			
         }	
 	}
 
 	void OnTriggerEnter(Collider other)
 	{
+		if(drop.value == 2)
+		{
+			if(other.gameObject.tag == "Enemy")
+			{
+					float rand = Random.Range(1f, 3f);
+					other.gameObject.GetComponent<WanderAI>().Health -= rand;
+			}
+		}
+
 		if(other.gameObject.tag == "Block" || other.gameObject.tag == "Sphere")
 		{
 				canPlace = false;

@@ -11,8 +11,14 @@ public class WanderAI : MonoBehaviour {
     public NavMeshAgent agent;
     private float timer;
 
+    public float Health = 5;
+    int minDist = 10;
+    int MoveSpeed = 5;
+    public GameObject player;
+
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
         agent = GetComponent<NavMeshAgent>();
         timer = wanderTimer;
     }
@@ -34,6 +40,10 @@ public class WanderAI : MonoBehaviour {
     // Update is called once per frame
     void Update ()
     {
+        if(Health <= 0)
+        {
+            Destroy(this.gameObject);
+        }
         timer += Time.deltaTime;
 
         if (timer >= wanderTimer)
@@ -41,6 +51,11 @@ public class WanderAI : MonoBehaviour {
             Vector3 newPos = RandomNavSphere(transform.position, wanderRadius, -1);
             agent.SetDestination(newPos);
             timer = 0;
+        }
+
+        if(Vector3.Distance(transform.position, player.transform.position) >= minDist)
+        {
+             transform.position += transform.forward * MoveSpeed * Time.deltaTime;
         }
     }
 
