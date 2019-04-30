@@ -59,6 +59,6 @@ public class MapPointGen : MonoBehaviour {
 
     void OnDestroy()
     {
-        Player.GetComponent<PlayerController>().SavePlayer();
+        
     }
 }

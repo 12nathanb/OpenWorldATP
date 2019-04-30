@@ -15,8 +15,9 @@ public class PlayerController : MonoBehaviour {
     int highScore = 0;
     public Text score;
     public Text Hscore;
-
+    public Toggle unlimHealth;
     public Image[] healthbar;
+
     void Start()
     {
         LoadPlayer();
@@ -26,7 +27,7 @@ public class PlayerController : MonoBehaviour {
 
     void Update()
     {
-        if(health <= 0)
+        if(health <= 0 && unlimHealth.isOn == false)
         {
             alive = false;
             StartCoroutine(RiseFromTheDead());
