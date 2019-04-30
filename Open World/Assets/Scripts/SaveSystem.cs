@@ -6,13 +6,13 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 public static class SaveSystem  {
 
-    public static void SavePlayer(PlayerController player)
+    public static void SavePlayer(PlayerController player, int score)
     {
         BinaryFormatter formatter = new BinaryFormatter();
         string path = Application.persistentDataPath + "/player.AT";
         FileStream stream = new FileStream(path, FileMode.Create);
 
-        PlayerData data = new PlayerData(player);
+        PlayerData data = new PlayerData(player, score);
 
         formatter.Serialize(stream, data);
         stream.Close();
@@ -74,7 +74,7 @@ public static class SaveSystem  {
         }
     }
 
-    public static void SaveChunk(List<GameObject> obj, string name)
+    public static void SaveChunk(List<GameObject> obj, string name, bool enemyMade)
     {
         string path = Application.persistentDataPath + "/Saved" + name + ".AT";
 
@@ -87,7 +87,7 @@ public static class SaveSystem  {
         
         FileStream stream = new FileStream(path, FileMode.Create);
 
-        ChunkData data = new ChunkData(obj, name);
+        ChunkData data = new ChunkData(obj, name, enemyMade);
        
         formatter.Serialize(stream, data);
         stream.Close();

@@ -40,7 +40,7 @@ Transform:
   m_GameObject: {fileID: 1805546516651366}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 15.572889, y: 1.215616, z: 16.44541}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -100,7 +100,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!114 &114808175710029152
 MonoBehaviour:
@@ -114,8 +114,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wanderRadius: 10
-  wanderTimer: 3
+  wanderTimer: 1
   agent: {fileID: 0}
+  Health: 5
+  player: {fileID: 0}
 --- !u!136 &136842464294207616
 CapsuleCollider:
   m_ObjectHideFlags: 1

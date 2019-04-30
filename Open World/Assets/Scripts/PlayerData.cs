@@ -7,10 +7,10 @@ public class PlayerData{
 
     public float[] position;
 
-
-    public PlayerData(PlayerController player)
+    public int highscore;
+    public PlayerData(PlayerController player, int score)
     {
-        
+        highscore = score;
         position = new float[3];
         position[0] = player.transform.position.x;
         position[1] = player.transform.position.y;

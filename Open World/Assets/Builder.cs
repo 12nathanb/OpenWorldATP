@@ -7,7 +7,7 @@ public class Builder : MonoBehaviour {
 	public Dropdown drop;
 	public GameObject cubePrefab;
 	public GameObject spherePrefab;
-
+	public Animator anim;
 	bool canPlace = true;
 	
 	// Use this for initialization
@@ -47,7 +47,19 @@ public class Builder : MonoBehaviour {
 				case 2:
 				break;
 			}
-			
+
+
+			if(drop.value == 2)
+			{
+				RaycastHit hit;
+				Vector3 fwd = transform.TransformDirection(Vector3.forward);
+				if(Physics.Raycast(this.transform.position, fwd, out hit, 10))
+				{
+						if(hit.transform.tag == "Enemy")
+							StartCoroutine(Attack(hit.transform.gameObject));
+				}
+				
+
         if(drop.value != 2)
 				{
 					cube.transform.position = new Vector3(Mathf.Round(cube.transform.position.x), cube.transform.position.y,
@@ -56,6 +68,7 @@ public class Builder : MonoBehaviour {
 				}   
 			
         }	
+	}
 	}
 
 	void OnTriggerEnter(Collider other)
@@ -76,18 +89,23 @@ public class Builder : MonoBehaviour {
 		}
 		
 	}
+IEnumerator Attack(GameObject other)
+{
+	anim.SetBool("Punch", true);
+				
+	other.gameObject.GetComponent<WanderAI>().Health -= 1;
+					
+	yield return new WaitForSeconds(0.5f);
+		anim.SetBool("Punch", false);
+}
+
 	void  OnTriggerStay(Collider  other)
   {
-		if(drop.value == 2)
-		{
-			if(other.gameObject.tag == "Enemy")
-			{
-					other.gameObject.GetComponent<WanderAI>().Health -= 1;
-			}
-		}
+	
 
 		if(Input.GetButtonDown("Fire2"))
-        {
+    {
+		
 			if(other.gameObject.tag == "Block" || other.gameObject.tag == "Sphere" )
 			{
 				Destroy(other.gameObject);

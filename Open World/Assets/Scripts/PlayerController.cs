@@ -1,37 +1,82 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class PlayerController : MonoBehaviour {
 
     public Animator anim;
     public GameObject spawner;
     public GameObject cubePrefab;
+
+    bool alive = true;
+    public int health = 5;
+    int mainScore = 0;
+
+    int highScore = 0;
+    public Text score;
+    public Text Hscore;
+
+    public Image[] healthbar;
     void Start()
     {
         LoadPlayer();
+        score.text = "Score:" + "0";
+        
     }
 
     void Update()
     {
-        var x = Input.GetAxis("Horizontal") * Time.deltaTime * 100.0f;
-        var z = Input.GetAxis("Vertical") * Time.deltaTime * 2.0f;
-        if(Input.GetKeyDown(KeyCode.Q))
+        if(health <= 0)
         {
-//            SaveSystem.SavePlayer(this);
+            alive = false;
+            StartCoroutine(RiseFromTheDead());
         }
-        anim.SetFloat("Horizontal", (x * 10));
-        anim.SetFloat("Vertical", (z * 10));
-        transform.Rotate(0, x, 0);
-        transform.Translate(0, 0, z);
+       
 
-        
-        if (x <= 0.1 || z <= 0.1)
+        if(alive == true)
         {
-            
+            var x = Input.GetAxis("Horizontal") * Time.deltaTime * 100.0f;
+            var z = Input.GetAxis("Vertical") * Time.deltaTime * 2.0f;
+            if(Input.GetKeyDown(KeyCode.Q))
+            {
+    //            SaveSystem.SavePlayer(this);
+            }
+            anim.SetFloat("Horizontal", (x * 10));
+            anim.SetFloat("Vertical", (z * 10));
+            transform.Rotate(0, x, 0);
+            transform.Translate(0, 0, z);
+
+            score.text = "Score: " + mainScore.ToString();
+
+            if(highScore >= mainScore)
+            {
+                Hscore.text = "Score: " + highScore.ToString();
+            }
+            else
+            {
+                Hscore.text = "Score: " + mainScore.ToString();
+            }
         }
+        else
+        {
+            SavePlayer();
+             anim.SetBool("Dead", true);
+        }
+
+       
+
     }
 
+    public bool GetAlive()
+    {
+        return alive;
+    }
+    public void TakeHealth(int h)
+    {
+         
+        health -= h;
+       healthbar[health].gameObject.SetActive(false);
+    }
     public void LoadPlayer()
     {
         PlayerData data = SaveSystem.LoadPlayer();
@@ -41,12 +86,38 @@ public class PlayerController : MonoBehaviour {
         pos.y = data.position[1];
         pos.z = data.position[2];
         transform.position = pos;
+        highScore = data.highscore;
     }
 
     public void SavePlayer ()
     {
         Debug.Log("prepare to save");
-        SaveSystem.SavePlayer(this);
+        PlayerData data = SaveSystem.LoadPlayer();
+        if(mainScore >= data.highscore)
+        {
+            SaveSystem.SavePlayer(this, mainScore);
+        }
+        else
+        {
+            SaveSystem.SavePlayer(this, data.highscore);
+        }
+        
+    }
+
+    public void AddScore(int score)
+    {
+        mainScore += score;
+
+    }
+
+    IEnumerator RiseFromTheDead()
+    {
+        yield return new WaitForSeconds(4f);
+       Application.LoadLevel(Application.loadedLevel);
+    }
+    void OnDestroy()
+    {
+        SavePlayer();
     }
 
 

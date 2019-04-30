@@ -14,7 +14,9 @@ public class ChunkData{
     public string[] location;
     public string Name;
 
-    public ChunkData(List<GameObject> obj, string name)
+    public bool enemyHasBeenmade;
+
+    public ChunkData(List<GameObject> obj, string name, bool enemyMade)
     {
         z = new float[obj.Count];
         x = new float[obj.Count];
@@ -35,7 +37,7 @@ public class ChunkData{
        }
 
        Name = name;
-
+       enemyHasBeenmade = enemyMade;
        Debug.Log(x[0]);
        Debug.Log(y[0]);
        Debug.Log(z[0]);

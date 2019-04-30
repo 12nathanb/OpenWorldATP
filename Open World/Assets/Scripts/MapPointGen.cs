@@ -44,6 +44,17 @@ public class MapPointGen : MonoBehaviour {
     {
         ememyList = GameObject.FindGameObjectsWithTag("Enemy");
         enemyCount = ememyList.Length;
+
+        if(ememyList.Length > 20)
+        {
+            int overSpill = ememyList.Length - 20;
+
+            for(int i = 0; i < overSpill; i++)
+            {
+                Destroy(ememyList[i].GetComponent<GameObject>());
+         
+            }
+        }
 	}
 
     void OnDestroy()

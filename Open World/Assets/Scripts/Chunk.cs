@@ -15,23 +15,27 @@ public class Chunk : MonoBehaviour {
 
 	public GameObject enemy;
 
-	bool canSpawn = true;
+	bool canSpawn;
 
 	bool thereIsEnemy = false;
+
 
 	// Use this for initialization
 	void Start () 
 	{
 		GM = GameObject.FindGameObjectWithTag("GameController").transform;
 
-		enemyCanSpawn();
 
 		string path = Application.persistentDataPath + "/Saved" + point.gameObject.name + ".AT";
+
+		
 
 		if(File.Exists(path))
 		{
 			data = SaveSystem.LoadChunk(point.gameObject.name.ToString());
 			
+			canSpawn = data.enemyHasBeenmade;
+
 			for(int i = 0; i < data.objname.Length; i++)
 			{
 				if(data.location[i] == "Block")
@@ -48,7 +52,6 @@ public class Chunk : MonoBehaviour {
 				}
 				else if(data.location[i] == "Enemy")
 				{
-					thereIsEnemy = true;
 					GameObject temp = Instantiate(enemy, new Vector3(data.x[i],data.y[i],data.z[i]), Quaternion.identity);
 					temp.gameObject.tag = "Enemy";
 					temp.gameObject.transform.SetParent(this.gameObject.transform);
@@ -56,10 +59,12 @@ public class Chunk : MonoBehaviour {
 			}
 		}
 		float num = Random.Range(0f, 100f);
-		if(num >= 80 && canSpawn == true && thereIsEnemy == false)
+
+		if(num >= 60 )
 		{
 			Vector3 position = new Vector3(point.transform.position.x, 3, point.transform.position.z);
 			Instantiate(enemy, position, Quaternion.identity);
+			canSpawn = false;
 		}
 		
 		
@@ -68,21 +73,10 @@ public class Chunk : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
-		enemyCanSpawn();
+
 	}
 
-	void enemyCanSpawn()
-	{
-		Debug.Log(GM.GetComponent<MapPointGen>().enemyCount);
-		if(GM.GetComponent<MapPointGen>().enemyCount >= 20)
-		{
-			canSpawn = false;
-		}
-		else
-		{
-			canSpawn = true;
-		}
-	}
+
 
 	public void setChunkPoint(GameObject obj)
 	{
@@ -106,7 +100,7 @@ public class Chunk : MonoBehaviour {
 			}
 			 if(gameobjectList.Count > 0)
 			 {
-				  SaveSystem.SaveChunk(gameobjectList, point.gameObject.name);
+				  SaveSystem.SaveChunk(gameobjectList, point.gameObject.name, canSpawn);
 			 }
 			
 		

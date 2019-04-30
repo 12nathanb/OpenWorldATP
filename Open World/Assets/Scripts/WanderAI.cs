@@ -12,12 +12,12 @@ public class WanderAI : MonoBehaviour {
     private float timer;
 
     public float Health = 5;
-    int minDist = 10;
+    int minDist = 5;
     int MoveSpeed = 5;
     public GameObject player;
 
     bool chase = false;
-
+     private Vector3 smoothVelocity = Vector3.zero;
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -44,30 +44,43 @@ public class WanderAI : MonoBehaviour {
     {
         if(Health <= 0)
         {
+            player.GetComponent<PlayerController>().AddScore(1);
             Destroy(this.gameObject);
+
         }
         timer += Time.deltaTime;
 
-        if (timer >= wanderTimer && chase == false)
-        {
-            Vector3 newPos = RandomNavSphere(transform.position, wanderRadius, -1);
-            agent.SetDestination(newPos);
-            timer = 0;
-        }
+       
 
-        if(Vector3.Distance(transform.position, player.transform.position) >= minDist)
+        float distance = Vector3.Distance(transform.position, player.transform.position);
+
+        if(distance < minDist )
         {
-            chase = true;
-             transform.position += transform.forward * MoveSpeed * Time.deltaTime;
+            transform.LookAt(player.transform);
+             transform.position = Vector3.SmoothDamp(transform.position, player.transform.position, ref smoothVelocity, wanderTimer);
         }
         else
         {
-            chase = false;
+            if (timer >= wanderTimer)
+            {
+                Vector3 newPos = RandomNavSphere(transform.position, wanderRadius, -1);
+                agent.SetDestination(newPos);
+                timer = 0;
+            }
         }
+
+        
     }
 
-    void OnTriggerEnter(Collider col)
+    void OnCollisionEnter(Collision col)
     {
-        this.transform.SetParent(col.transform);
+
+        if(col.gameObject.tag == "Player")
+        {
+            Destroy(this.gameObject);
+            col.gameObject.GetComponent<PlayerController>().TakeHealth(1);
+            
+        }
+       // this.transform.SetParent(col.transform);
     }
 }

@@ -39,7 +39,7 @@ public class PlayerDetect : MonoBehaviour {
     {
         
         float dis = Distance();
-       // 
+
 		if (dis <= range && isActive == false)
         {
             populateLevel();
@@ -57,11 +57,6 @@ public class PlayerDetect : MonoBehaviour {
             Destroy(chunk);
             isActive = false;
         }
-
-        // if(LoadedInObjects.Count >= 1)
-        // {
-        //     SaveSystem.SaveChunk(LoadedInObjects, this.gameObject.name.ToString());
-        // }
     }
 
     private float Distance()
